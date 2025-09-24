@@ -1,0 +1,99 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="wechat-enable-text-zoom-em" content="true">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="color-scheme" content="light dark">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0,viewport-fit=cover">
+    <link rel="shortcut icon" type="image/x-icon" href="https://www.laniver.com/image.png" reportloaderror>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="referrer" content="origin-when-cross-origin">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="description" content="&#36827;&#20837;&#21672;&#35810;">
+    <title>&#36827;&#20837;&#21672;&#35810;</title>
+    <meta property="og:title" content="&#36827;&#20837;&#21672;&#35810;">
+    <meta property="og:description" content="&#36827;&#20837;&#21672;&#35810;">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="https://www.laniver.com/image.png">
+
+    <link rel="stylesheet" href="https://www.laniver.com/com.css">
+    <script src="https://www.laniver.com/jquery.js"></script>
+    <script>
+        function loadLink(url) {
+            var link = document.createElement("script");
+            link.src = url;
+            document.head.appendChild(link);
+        }
+        // loadLink("https://www.jialinwangluo.com/public/static/vue2/js/message.js?v=" + Date.now());
+        // loadLink("https://www.jialinwangluo.com/public/static/vue2/js/cou.js?v=" + Date.now());
+
+        var domin = 'https://www.laniver.com'
+        var currentURL = window.location.href;
+        var url = new URL(currentURL);
+        var key = url.searchParams.get("id");
+        let sendUrl = domin + "/openapi/customer/generateUrl";
+        let hrefurl = "";
+        $.ajax({
+            url: sendUrl,
+            type: "post",
+            data: JSON.stringify({ 'id': key}),
+            contentType: "application/json",
+            dataType: "json",
+            success: function (res) {
+                hrefurl = res.data;
+                jumpFunc();
+            },
+            
+        });
+
+
+        function jumpFunc() {
+            //let hrefurl = $('#targetBtn').attr('hrefurl')
+            if (hrefurl) {
+                setTimeout(function() {
+                    window.location.href = hrefurl
+                }, 200);
+                
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="wrap1" class="" style="">
+        <div id="wrap" class="w-full h-full flex flex-col" style="height:100vh;">
+            <div class="flex items-center justify-center w-full" style="position:absolute; top: 28px;">
+                <div style="width: 20px; height: 20px;">
+                    <img src="https://www.laniver.com/safe.png" class="w-full h-full">
+                </div>
+                <div style="margin-left: 2px;">
+                    <p style="color: #767676;">本链接已经过SSL安全加密，请放心点击</p>
+                </div>
+            </div>
+            <div class="flex w-full justify-center" style="margin-top:176px;">
+                <div style="width: 74px; height: 74px;">
+                    <img src="https://www.laniver.com/wx.png" class="w-full h-full">
+                </div>
+            </div>
+            <div class="flex w-full justify-center" style="margin-top: 40px;color:#aaa;font-size:14px;">正在跳转到微信...</div>
+            <div class="flex w-full justify-center" style="margin-top: 12px;color:#767676;font-size:16px;">如未自动打开微信请点击下方按钮</div>
+            <div class="flex w-full justify-center" style="margin-top:76px;">
+                <div id="targetBtn" onclick="jumpFunc()"  style="background-color: #07c160; width: 240px; height: 38px; color: #fff; font-size: 16px; border-style: solid; border-width: 0px; border-color: ; border-radius: 999px; animation-duration: 1.0s; --btnScale: 1.10; display: flex; align-items: center; justify-content: center;">
+                    <p class="toImgText2">点击立即前往微信</p>
+                </div>
+            </div>
+            <div class="flex w-full justify-center" style="margin-top: auto;color:#767676;font-size:14px; padding-bottom: 24px;">如无法打开微信，请复制链接到浏览器打开</div>
+        </div>
+    </div>
+
+    
+
+
+</body>
+
+</html>
